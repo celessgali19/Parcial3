@@ -8,7 +8,7 @@ from .models import Puesto, Empleados
 class PuestoNode(DjangoObjectType):
     class Meta:
         model = Puesto
-        filter_fields = ['nombre', 'empleados']
+        filter_fields = ['nombre']
         interfaces = (relay.Node, )
 
 class EmpleadosNode(DjangoObjectType):
@@ -31,7 +31,7 @@ class Query(object):
     empleados = relay.Node.Field(EmpleadosNode)
     all_empleados = DjangoFilterConnectionField(EmpleadosNode)
 
-    #crear empleado
+    #crear puesto
 class CreatePuesto(graphene.Mutation):
 
     class Arguments:
@@ -46,6 +46,32 @@ class CreatePuesto(graphene.Mutation):
         return CreatePuesto(puesto=puesto)
 
 
+#Crear empleado
+
+class CreateEmpleados(graphene.Mutation):
+
+  class Arguments:
+    nombre = graphene.String()
+    salario = graphene.Float()
+    puesto = graphene.String()
+ 
+
+  empleados = graphene.Field(EmpleadosNode)
+
+
+  def mutate(self, info, nombre, salario, puesto):
+    empleados = Empleados.objects.create(
+      nombre = nombre,
+      salario = salario,
+      puesto = puesto
+    )
+    
+    return CreateEmpleados(
+      empleados=empleados
+    )
+
+
 
 class Mutation(graphene.ObjectType):
   create_puesto = CreatePuesto.Field()
+  create_empleados = CreateEmpleados.Field()

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'empleados',
-    'graphene_django'
+    'graphene_django',
+    
 ]
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,7 +52,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+MIDDLEWARE += [
+    'corsheaders.middleware.CorsMiddleware',
+]
+
 
 ROOT_URLCONF = 'proyecto.urls'
 
@@ -124,3 +132,12 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     'SCHEMA': 'proyecto.schema.schema'
 }
+
+
+CORS_ORIGIN_WHITELIST = [
+
+    'http://127.0.0.1:4200',
+    'https://127.0.0.1:4200',
+    'http://localhost:4200'
+]
+CORS_ALLOW_CREDENTIALS = True

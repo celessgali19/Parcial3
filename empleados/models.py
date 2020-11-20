@@ -17,12 +17,13 @@ class Empleados(models.Model):
 
     salario = models.FloatField(max_length=100)
 
+    puesto = models.CharField(max_length=100)
 
-    puesto = models.ForeignKey(
+   # puesto = models.ForeignKey(
 
-        Puesto, related_name="empleados", on_delete=models.CASCADE
+    #    Puesto, related_name="empleados", on_delete=models.CASCADE
 
-    )
+    #)
 
 
     def __str__(self):
