@@ -3,11 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {FormularioComponent} from './formulario/formulario.component'
 
+import {IngresoComponent} from './ingreso/ingreso.component'
+
+
 
 
 const routes: Routes = [
 
-{path:'formulario', component: FormularioComponent}
+{path:'formulario', component: FormularioComponent},
+{path:'ingresar', component: IngresoComponent}
+
 
 
 ];

@@ -2,7 +2,9 @@
 <br>
 <h2>EMPLEADOS</h2>
 <div class="container">
-
+  <div class="row center">
+    <button mat-raised-button color="primary" [routerLink]="['/ingresar']" >Agregar Nuevo empleado</button>
+</div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.

@@ -1,0 +1,14 @@
+
+
+  
+.custom-container{
+
+    flex-direction: row;
+    justify-content: center;
+    display: flex;
+
+  }
+  div.row:nth-child(3) {
+    width: 600px;
+    height: 400px;
+}
